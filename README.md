@@ -3,7 +3,7 @@
 <p align="center">
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&pause=1000&color=F59D0B&center=true&vCenter=true&random=false&width=650&lines=Accelerating+Student+Certificate+Issuance+with+Automation" alt="Typing SVG" />
 </p>
-<br/><br/>
+<br/>
 
 This project aims to digitize and automate the process of generating certificates like transfer certificates (TC) and conduct certificates (CC) for students in educational institutions.
 
