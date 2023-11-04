@@ -1,7 +1,7 @@
 
 <h1 align="center"/>📜TCGenie</h1>
 <p align="center">
-Accelerating Student Certificate Issuance with Automation
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&pause=1000&color=F59D0B&center=true&vCenter=true&random=false&width=650&lines=Accelerating+Student+Certificate+Issuance+with+Automation" alt="Typing SVG" />
 </p>
 <br/><br/>
 
