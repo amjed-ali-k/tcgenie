@@ -1,5 +1,6 @@
 "use client"
 
+import { DataTableColumnHeader } from "@/components/coulmn-header"
 import { Student } from "@prisma/client"
 import { ColumnDef } from "@tanstack/react-table"
 import { format } from "date-fns"
@@ -7,15 +8,21 @@ import { format } from "date-fns"
 export const columns: ColumnDef<Student>[] = [
   {
     accessorKey: 'name',
-    header: 'Name',
+    header:  ({ column }) => (
+      <DataTableColumnHeader column={column} title="Name" />
+    ),
   },
   {
     accessorKey: 'admissionNo',
-    header: 'Admission No',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Admission No" />
+    ),
   },
   {
     accessorKey: 'dateOfAdmission',
-    header: 'Date of Admission',
+    header:  ({ column }) => (
+      <DataTableColumnHeader column={column} title="Date of Admission" />
+    ),
     cell: (props) => format(props.getValue() as Date, 'dd/MM/yyyy'),
   },
   {
@@ -24,7 +31,9 @@ export const columns: ColumnDef<Student>[] = [
   },
   {
     accessorKey: 'tcIssuedDate',
-    header: 'TC Issued Date',
+    header:  ({ column }) => (
+      <DataTableColumnHeader column={column} title="TC Issued" />
+    ),
     cell: ({getValue}) =>  getValue() ? format(getValue() as Date, 'dd/MM/yyyy'): 'Not issued',
   },
   {
