@@ -35,7 +35,7 @@ EmptyPlaceholder.Icon = function EmptyPlaceHolderIcon({
   className,
   ...props
 }: EmptyPlaceholderIconProps) {
-  const Icon = Icons[name]
+  const Icon = Icons[name] as unknown as any
 
   if (!Icon) {
     return null
