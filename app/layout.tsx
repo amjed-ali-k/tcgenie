@@ -3,12 +3,11 @@ import localFont from "next/font/local"
 
 import "@/styles/globals.css"
 import { siteConfig } from "@/config/site"
-import { absoluteUrl, cn } from "@/lib/utils"
+import {  cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import { Analytics } from "@/components/analytics"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-import Head from "next/head"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -61,13 +60,13 @@ export const metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
-    images: '/api/og'
+    images: '/og.jpg'
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`/api/og`],
+    images: [`/og.jpg`],
     creator: "@amjed_ali_k",
   },
   icons: {
@@ -76,15 +75,13 @@ export const metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: `${siteConfig.url}/site.webmanifest`,
-  metadataBase: new URL('localhost:3000')
+  // metadataBase: new URL('localhost:3000')
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <Head>
-        {" "}
-      </Head>
+    <head/>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
