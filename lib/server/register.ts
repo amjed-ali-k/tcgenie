@@ -3,6 +3,7 @@
 import { z } from "zod"
 import { db } from "../db"
 import { userNewAuthSchema } from "../validations/auth"
+import bcrypt from 'bcrypt'
 
 type FormData = z.infer<typeof userNewAuthSchema>
 
@@ -30,10 +31,14 @@ export async function registerUser(data: FormData) {
     data: {
       name: name,
       email: email,
-      password: password,
+      password: await bcrypt.hash(password, 10),
+
+      // Approve now since we don't have email confirmation yet
       isApproved: true,
+      approvedAt: new Date(),
     },
   })
+  if(user)
   return true
-
+ return "Unknown error occured"
 }
