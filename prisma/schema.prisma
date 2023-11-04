@@ -123,4 +123,8 @@ model Student {
   deletedBy         String?   @map(name: "deleted_by")
   deletedReason     String?   @map(name: "deleted_reason")
   deleted           Boolean   @default(false)
+
+  @@index([name])
+  @@index([admissionNo])
+  @@index([createdById])
 }
