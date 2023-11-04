@@ -21,11 +21,10 @@ export default async function IndexPage() {
             Follow along on Twitter
           </Link>
           <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
-            An example app built using Next.js 13 server components.
+            Issue official certificates without hassle
           </h1>
           <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-            I&apos;m building a web app with Next.js 13 and open sourcing
-            everything. Follow along as we figure this out together.
+           Record, edit and generate student certificates in one platform.
           </p>
           <div className="space-x-4">
             <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>

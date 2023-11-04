@@ -52,6 +52,12 @@ model User {
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
   password      String?
 
+  isApproved Boolean   @default(false) @map(name: "is_approved")
+  approvedBy String?   @map(name: "approved_by")
+  approvedAt DateTime? @map(name: "approved_at")
+
+  roles String[] @default(["USER"])
+
   accounts Account[]
   sessions Session[]
   Post     Post[]

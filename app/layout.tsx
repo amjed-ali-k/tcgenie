@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { Analytics } from "@/components/analytics"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
+import Head from "next/head"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -18,10 +19,19 @@ const fontSans = FontSans({
 const fontHeading = localFont({
   src: "../assets/fonts/CalSans-SemiBold.woff2",
   variable: "--font-heading",
+  preload: true,
+
 })
 
 interface RootLayoutProps {
   children: React.ReactNode
+}
+
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
 }
 
 export const metadata = {
@@ -44,10 +54,6 @@ export const metadata = {
     },
   ],
   creator: "amjed-ali-k",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -55,12 +61,13 @@ export const metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
+    images: '/api/og.jpg'
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/og.jpg`],
+    images: [`/og.jpg`],
     creator: "@amjed_ali_k",
   },
   icons: {
@@ -69,12 +76,15 @@ export const metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: `${siteConfig.url}/site.webmanifest`,
+  metadataBase: new URL('localhost:3000')
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
+      <Head>
+        {" "}
+      </Head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
