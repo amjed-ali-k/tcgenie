@@ -23,6 +23,7 @@ import {
   Trash,
   Twitter,
   User,
+  Users2Icon,
   X,
   type Icon as LucideIcon,
 } from "lucide-react"
@@ -39,6 +40,7 @@ export const Icons = {
   post: FileText,
   page: File,
   media: Image,
+  users: Users2Icon,
   settings: Settings,
   billing: CreditCard,
   ellipsis: MoreVertical,
