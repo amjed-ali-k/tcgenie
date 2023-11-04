@@ -4,11 +4,17 @@ import { getCurrentUser } from "@/lib/session"
 import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
 import { UserNameForm } from "@/components/user-name-form"
+import { DataTable } from "./students-table"
+import { columns } from "./columns"
+import { db } from "@/lib/db"
 
 export const metadata = {
   title: "Students",
   description: "Add students to your directory.",
 }
+
+export const revalidate = 60; // 1 hour
+
 
 export default async function SettingsPage() {
   const user = await getCurrentUser()
@@ -17,6 +23,15 @@ export default async function SettingsPage() {
     redirect(authOptions?.pages?.signIn || "/login")
   }
 
+  const data = await db.student.findMany({
+    where: {
+      createdById: user.id,
+    },
+    orderBy: {
+      createdAt: "desc",
+    }
+  })
+
   return (
     <DashboardShell>
       <DashboardHeader
@@ -24,6 +39,7 @@ export default async function SettingsPage() {
         text="Add students to your directory."
       />
       <div className="grid gap-10">
+      <DataTable columns={columns} data={data} />
 
       </div>
     </DashboardShell>
