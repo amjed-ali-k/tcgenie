@@ -60,13 +60,13 @@ export const metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
-    images: '/og.jpg'
+    images: '/og.png'
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`/og.jpg`],
+    images: [`/og.png`],
     creator: "@amjed_ali_k",
   },
   icons: {
