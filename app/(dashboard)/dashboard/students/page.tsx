@@ -37,7 +37,7 @@ export default async function SettingsPage() {
         heading="Students"
         text="Add students to your directory."
       />
-      <div className="grid gap-10">
+      <div className="grid gap-4">
       <DataTable columns={columns} data={data} />
 
       </div>
