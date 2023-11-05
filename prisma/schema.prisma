@@ -60,6 +60,7 @@ model User {
   sessions Session[]
   Post     Post[]
   Student  Student[]
+  Status   Status?
 
   @@map(name: "users")
 }
@@ -126,4 +127,16 @@ model Student {
   @@index([name])
   @@index([admissionNo])
   @@index([createdById])
+}
+
+model Status {
+  userId String @unique @map(name: "user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
+  totalStudents          Int @default(0) @map(name: "total_students")
+  totalTCIssued          Int @default(0) @map(name: "total_tc_issued")
+  totalTCIssuedThisMonth Int @default(0) @map(name: "total_tc_issued_this_month")
+  totalTCIssuedThisYear  Int @default(0) @map(name: "total_tc_issued_this_year")
+
+  @@map(name: "status")
 }

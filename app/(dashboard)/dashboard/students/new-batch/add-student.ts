@@ -47,6 +47,8 @@ export async function addStudent(data: FormData) {
     },
   })
 
+  // update Status
+
   return {
     type: "default",
     msg: "Student created successfully",
