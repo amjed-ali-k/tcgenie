@@ -289,7 +289,6 @@ function StudentForm() {
             />
           </div>
           <Separator />
-
           <div className="grid grid-cols-3 gap-4">
             <FormField
               control={form.control}

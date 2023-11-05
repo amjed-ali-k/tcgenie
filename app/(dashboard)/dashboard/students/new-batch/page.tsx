@@ -27,7 +27,6 @@ export default async function SettingsPage() {
       />
       <div className="grid gap-4">
         <StudentForm />
-        {/* <DataTable columns={columns} data={data} /> */}
       </div>
     </DashboardShell>
   )
