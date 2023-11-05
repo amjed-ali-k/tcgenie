@@ -102,10 +102,10 @@ model Student {
   previousInstution String?   @map("previous_instution")
   tcRecievedDate    DateTime? @map("tc_recieved_date")
   tcRecievedNo      String?   @map("tc_recieved_no")
-  dateOfLeaving     DateTime? @map("date_of_leaving")
-  reasonForLeaving  String?   @map("reason_for_leaving")
   otherFields       Json?
   // Issued fields
+  dateOfLeaving     DateTime? @map("date_of_leaving")
+  reasonForLeaving  String?   @map("reason_for_leaving")
   tcIssuedDate      DateTime? @map("tc_issued_date")
   tcIssuedBy        String?   @map("tc_issued_by")
   tcIssuedNo        String?   @map("tc_issued_no")
