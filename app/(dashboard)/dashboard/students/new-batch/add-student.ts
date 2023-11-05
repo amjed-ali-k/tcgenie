@@ -17,10 +17,9 @@ export async function addStudent(data: FormData) {
       msg: "You are not allowed to do this",
     }
   }
-
-  const validated = newStudentFormSchema.parse(data)
-
-  if (!validated) {
+  try {
+    newStudentFormSchema.parse(data)
+  } catch (error) {
     return {
       type: "destructive",
       msg: "Invalid data",
@@ -29,7 +28,7 @@ export async function addStudent(data: FormData) {
 
   const existingStudent = await db.student.findFirst({
     where: {
-      admissionNo: validated.admissionNo,
+      admissionNo: data.admissionNo,
       createdById: session.user.id,
     },
   })
@@ -43,7 +42,7 @@ export async function addStudent(data: FormData) {
 
   const newStudent = await db.student.create({
     data: {
-      ...validated,
+      ...data,
       createdById: session.user.id,
     },
   })

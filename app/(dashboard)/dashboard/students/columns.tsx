@@ -1,43 +1,46 @@
 "use client"
 
-import { DataTableColumnHeader } from "@/components/coulmn-header"
 import { Student } from "@prisma/client"
 import { ColumnDef } from "@tanstack/react-table"
 import { format } from "date-fns"
 
+import { DataTableColumnHeader } from "@/components/coulmn-header"
+
 export const columns: ColumnDef<Student>[] = [
   {
-    accessorKey: 'name',
-    header:  ({ column }) => (
+    accessorKey: "name",
+    header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Name" />
     ),
   },
   {
-    accessorKey: 'admissionNo',
+    accessorKey: "admissionNo",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Admission No" />
     ),
   },
   {
-    accessorKey: 'dateOfAdmission',
-    header:  ({ column }) => (
+    accessorKey: "dateOfAdmission",
+    header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Date of Admission" />
     ),
-    cell: (props) => format(props.getValue() as Date, 'dd/MM/yyyy'),
+    cell: ({ getValue }) =>
+      getValue() ? format(getValue() as Date, "dd/MM/yyyy") : "",
   },
   {
-    accessorKey: 'class',
-    header: 'Class',
+    accessorKey: "class",
+    header: "Class",
   },
   {
-    accessorKey: 'tcIssuedDate',
-    header:  ({ column }) => (
+    accessorKey: "tcIssuedDate",
+    header: ({ column }) => (
       <DataTableColumnHeader column={column} title="TC Issued" />
     ),
-    cell: ({getValue}) =>  getValue() ? format(getValue() as Date, 'dd/MM/yyyy'): 'Not issued',
+    cell: ({ getValue }) =>
+      getValue() ? format(getValue() as Date, "dd/MM/yyyy") : "",
   },
   {
-    accessorKey: 'remarks',
-    header: 'Remarks',
-  }
+    accessorKey: "remarks",
+    header: "Remarks",
+  },
 ]

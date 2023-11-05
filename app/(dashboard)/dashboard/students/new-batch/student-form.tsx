@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import format from "date-fns/format"
 import parse from "date-fns/parse"
-import { Command } from "lucide-react"
+import { Command, Loader } from "lucide-react"
 import { ControllerRenderProps, useForm } from "react-hook-form"
 import * as z from "zod"
 
@@ -30,17 +30,48 @@ function StudentForm() {
   const form = useForm<z.infer<typeof newStudentFormSchema>>({
     resolver: zodResolver(newStudentFormSchema),
     defaultValues: {
-      name: "",
+      admissionNo: undefined,
+      name: undefined,
+      parentName: undefined,
+      parentAddress: undefined,
+      phoneNo: undefined,
+      caste: undefined,
+      religion: undefined,
+      dateOfBirth: undefined,
+      class: undefined,
+      previousInstitution: undefined,
+      tcRecievedNo: undefined,
+      tcRecievedDate: undefined,
+      dateOfLeaving: undefined,
+      classAtTimeOfLeaving: undefined,
+      reasonForLeaving: undefined,
+      tcIssuedNo: undefined,
+      tcIssuedDate: undefined,
+      remarks: undefined,
+      conduct: undefined,
     },
   })
-  const firstInput = useRef<HTMLInputElement>(null)
-  async function onSubmit(values: z.infer<typeof newStudentFormSchema>) {
+
+  const [isSubmitting, setisSubmitting] = useState(false)
+  const firstInput = useRef<HTMLInputElement>()
+  async function onSubmit(values: z.infer<typeof newStudentFormSchema>, e) {
+    setisSubmitting(true)
     const res = await addStudent(values)
+
     toast({
       variant: res.type as any,
       title: res.msg,
     })
-    form.reset()
+
+    setisSubmitting(false)
+    if (res.type === "destructive") return
+
+    form.reset(
+      {},
+      {
+        keepValues: false,
+      }
+    )
     firstInput.current?.focus()
     // scroll to top
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -58,7 +89,14 @@ function StudentForm() {
                 <FormItem>
                   <FormLabel>Admission no</FormLabel>
                   <FormControl>
-                    <Input placeholder="123456" {...field} ref={firstInput} />
+                    <Input
+                      placeholder="123456"
+                      {...field}
+                      ref={(n) => {
+                        firstInput.current = n as any
+                        field.ref(n)
+                      }}
+                    />
                   </FormControl>
                   <FormDescription></FormDescription>
                   <FormMessage />
@@ -360,7 +398,8 @@ function StudentForm() {
               )}
             />
           </div>
-          <Button type="submit" className="w-64">
+          <Button disabled={isSubmitting} type="submit" className="w-64">
+            {isSubmitting && <Loader className="mr-2 h-4 w-4 animate-spin" />}
             Submit
             <span className="ml-8 flex items-center">
               <Command className="inline-block h-3 w-3" /> +S
