@@ -5,7 +5,6 @@ import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 
-
 export default async function IndexPage() {
   const stars = 5
 
@@ -24,7 +23,7 @@ export default async function IndexPage() {
             Issue official certificates without hassle
           </h1>
           <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-           Record, edit and generate student certificates in one platform.
+            Record, edit and generate student certificates in one platform.
           </p>
           <div className="space-x-4">
             <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
@@ -135,19 +134,12 @@ export default async function IndexPage() {
               </svg>
               <div className="space-y-2">
                 <h3 className="font-bold">Subscriptions</h3>
-                <p className="text-sm text-muted-foreground">
-                  Free and paid subscriptions using Stripe.
-                </p>
+                <p className="text-sm text-muted-foreground">Free forever.</p>
               </div>
             </div>
           </div>
         </div>
-        <div className="mx-auto text-center md:max-w-[58rem]">
-          <p className="leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            Taxonomy also includes a blog and a full-featured documentation site
-            built using Contentlayer and MDX.
-          </p>
-        </div>
+        <div className="mx-auto text-center md:max-w-[58rem]"></div>
       </section>
       <section id="open-source" className="container py-8 md:py-12 lg:py-24">
         <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
@@ -155,7 +147,7 @@ export default async function IndexPage() {
             Proudly Open Source
           </h2>
           <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            Taxonomy is open source and powered by open source software. <br />{" "}
+            TC Genie is open source and powered by open source software. <br />{" "}
             The code is available on{" "}
             <Link
               href={siteConfig.links.github}
