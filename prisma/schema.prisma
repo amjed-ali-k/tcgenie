@@ -138,5 +138,7 @@ model Status {
   totalTCIssuedThisMonth Int @default(0) @map(name: "total_tc_issued_this_month")
   totalTCIssuedThisYear  Int @default(0) @map(name: "total_tc_issued_this_year")
 
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+
   @@map(name: "status")
 }
