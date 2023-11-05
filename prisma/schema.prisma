@@ -134,9 +134,13 @@ model Status {
   user   User   @relation(fields: [userId], references: [id])
 
   totalStudents          Int @default(0) @map(name: "total_students")
+  newStudentsThisMonth   Int @default(0) @map(name: "new_students_this_month")
   totalTCIssued          Int @default(0) @map(name: "total_tc_issued")
   totalTCIssuedThisMonth Int @default(0) @map(name: "total_tc_issued_this_month")
   totalTCIssuedThisYear  Int @default(0) @map(name: "total_tc_issued_this_year")
+
+  lastLoginAt DateTime? @map(name: "last_login_at")
+  totalLogins Int       @default(0) @map(name: "total_logins")
 
   updatedAt DateTime @default(now()) @map(name: "updated_at")
 
