@@ -5,6 +5,8 @@ import { getCurrentUser } from "@/lib/session"
 import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
 
+import StudentForm from "./student-form"
+
 export const metadata = {
   title: "Students",
   description: "Add new students to your directory.",
@@ -24,6 +26,7 @@ export default async function SettingsPage() {
         text="Add students to your directory."
       />
       <div className="grid gap-4">
+        <StudentForm />
         {/* <DataTable columns={columns} data={data} /> */}
       </div>
     </DashboardShell>

@@ -88,38 +88,40 @@ model Post {
 }
 
 model Student {
-  id                String    @id @default(cuid())
-  name              String
-  admissionNo       String?   @map("admission_no")
-  parantName        String?   @map("parant_name")
-  parantAddress     String?   @map("parant_address")
-  phoneNo           String?   @map("phone_no")
-  caste             String?
-  religion          String?
-  dateOfBirth       DateTime? @map("date_of_birth")
-  dateOfAdmission   DateTime? @map("date_of_admission")
-  class             String?
-  previousInstution String?   @map("previous_instution")
-  tcRecievedDate    DateTime? @map("tc_recieved_date")
-  tcRecievedNo      String?   @map("tc_recieved_no")
-  otherFields       Json?
+  id                   String    @id @default(cuid())
+  name                 String
+  admissionNo          String?   @map("admission_no")
+  parantName           String?   @map("parant_name")
+  parantAddress        String?   @map("parant_address")
+  phoneNo              String?   @map("phone_no")
+  caste                String?
+  religion             String?
+  dateOfBirth          DateTime? @map("date_of_birth")
+  dateOfAdmission      DateTime? @map("date_of_admission")
+  class                String?
+  previousInstution    String?   @map("previous_instution")
+  tcRecievedDate       DateTime? @map("tc_recieved_date")
+  tcRecievedNo         String?   @map("tc_recieved_no")
+  otherFields          Json?
   // Issued fields
-  dateOfLeaving     DateTime? @map("date_of_leaving")
-  reasonForLeaving  String?   @map("reason_for_leaving")
-  tcIssuedDate      DateTime? @map("tc_issued_date")
-  tcIssuedBy        String?   @map("tc_issued_by")
-  tcIssuedNo        String?   @map("tc_issued_no")
-  remarks           String?
+  conduct              String?
+  dateOfLeaving        DateTime? @map("date_of_leaving")
+  classAtTimeOfLeaving String?   @map("class_at_time_of_leaving")
+  reasonForLeaving     String?   @map("reason_for_leaving")
+  tcIssuedNo           String?   @map("tc_issued_no")
+  tcIssuedDate         DateTime? @map("tc_issued_date")
+  tcIssuedBy           String?   @map("tc_issued_by")
+  remarks              String?
   // General fields
-  createdAt         DateTime  @default(now()) @map(name: "created_at")
-  updatedAt         DateTime  @default(now()) @map(name: "updated_at")
-  createdBy         User      @relation(fields: [createdById], references: [id])
-  createdById       String    @map("created_by")
+  createdAt            DateTime  @default(now()) @map(name: "created_at")
+  updatedAt            DateTime  @default(now()) @map(name: "updated_at")
+  createdBy            User      @relation(fields: [createdById], references: [id])
+  createdById          String    @map("created_by")
   // Deleted fields
-  deletedAt         DateTime? @map(name: "deleted_at")
-  deletedBy         String?   @map(name: "deleted_by")
-  deletedReason     String?   @map(name: "deleted_reason")
-  deleted           Boolean   @default(false)
+  deletedAt            DateTime? @map(name: "deleted_at")
+  deletedBy            String?   @map(name: "deleted_by")
+  deletedReason        String?   @map(name: "deleted_reason")
+  deleted              Boolean   @default(false)
 
   @@index([name])
   @@index([admissionNo])
