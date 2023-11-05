@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import format from "date-fns/format"
 import parse from "date-fns/parse"
@@ -8,6 +8,7 @@ import { Command } from "lucide-react"
 import { ControllerRenderProps, useForm } from "react-hook-form"
 import * as z from "zod"
 
+import { newStudentFormSchema } from "@/lib/validations/student"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -21,43 +22,28 @@ import {
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
+import { toast } from "@/components/ui/use-toast"
 
-const formSchema = z.object({
-  admissionNo: z.string(),
-  name: z.string(),
-  parentName: z.string().optional(),
-  parentAddress: z.string().optional(),
-  phoneNo: z.string().optional(),
-  caste: z.string().optional(),
-  religion: z.string().optional(),
-  dateOfBirth: z.date().optional(),
-  dateOfAdmission: z.date().optional(),
-  class: z.string().optional(),
-  previousInstitution: z.string().optional(),
-  tcRecievedNo: z.string().optional(),
-  tcRecievedDate: z.date().optional(),
-  //--
-  dateOfLeaving: z.date().optional(),
-  classAtTimeOfLeaving: z.string().optional(),
-  reasonForLeaving: z.string().optional(),
-  tcIssuedNo: z.string().optional(),
-  tcIssuedDate: z.date().optional(),
-  remarks: z.string().optional(),
-  conduct: z.string().optional(),
-})
+import { addStudent } from "./add-student"
 
 function StudentForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof newStudentFormSchema>>({
+    resolver: zodResolver(newStudentFormSchema),
     defaultValues: {
       name: "",
     },
   })
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+  const firstInput = useRef<HTMLInputElement>(null)
+  async function onSubmit(values: z.infer<typeof newStudentFormSchema>) {
+    const res = await addStudent(values)
+    toast({
+      variant: res.type as any,
+      title: res.msg,
+    })
+    form.reset()
+    firstInput.current?.focus()
+    // scroll to top
+    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   return (
@@ -72,7 +58,7 @@ function StudentForm() {
                 <FormItem>
                   <FormLabel>Admission no</FormLabel>
                   <FormControl>
-                    <Input placeholder="123456" {...field} />
+                    <Input placeholder="123456" {...field} ref={firstInput} />
                   </FormControl>
                   <FormDescription></FormDescription>
                   <FormMessage />

@@ -91,15 +91,15 @@ model Student {
   id                   String    @id @default(cuid())
   name                 String
   admissionNo          String?   @map("admission_no")
-  parantName           String?   @map("parant_name")
-  parantAddress        String?   @map("parant_address")
+  parentName           String?   @map("parent_name")
+  parentAddress        String?   @map("parent_address")
   phoneNo              String?   @map("phone_no")
   caste                String?
   religion             String?
   dateOfBirth          DateTime? @map("date_of_birth")
   dateOfAdmission      DateTime? @map("date_of_admission")
   class                String?
-  previousInstution    String?   @map("previous_instution")
+  previousInstitution  String?   @map("previous_instution")
   tcRecievedDate       DateTime? @map("tc_recieved_date")
   tcRecievedNo         String?   @map("tc_recieved_no")
   otherFields          Json?
