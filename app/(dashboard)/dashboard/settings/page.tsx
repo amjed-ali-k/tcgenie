@@ -6,6 +6,8 @@ import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
 import { UserNameForm } from "@/components/user-name-form"
 
+import { UserList } from "./team-list"
+
 export const metadata = {
   title: "Settings",
   description: "Manage account and website settings.",
@@ -26,6 +28,9 @@ export default async function SettingsPage() {
       />
       <div className="grid gap-10">
         <UserNameForm user={{ id: user.id, name: user.name || "" }} />
+      </div>
+      <div>
+        <UserList />
       </div>
     </DashboardShell>
   )

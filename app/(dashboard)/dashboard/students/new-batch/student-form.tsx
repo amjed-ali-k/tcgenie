@@ -56,6 +56,7 @@ function StudentForm() {
   const firstInput = useRef<HTMLInputElement>()
   async function onSubmit(values: z.infer<typeof newStudentFormSchema>, e) {
     setisSubmitting(true)
+
     const res = await addStudent(values)
 
     toast({
