@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Student } from "@prisma/client"
 import format from "date-fns/format"
 import parse from "date-fns/parse"
 import { Command, Loader } from "lucide-react"
@@ -28,23 +29,30 @@ import {
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
+import { DateInput } from "@/components/date-input"
 
 function StudentForm({
-  id,
+  student,
   onSubmit,
 }: {
-  id: string
+  student: Student
   onSubmit: (data: z.infer<typeof tcIssueFormSchema>) => void
 }) {
   const form = useForm<z.infer<typeof tcIssueFormSchema>>({
     resolver: zodResolver(tcIssueFormSchema),
+    defaultValues: student as any,
   })
 
   return (
     <div className="px-2">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion
+            defaultValue="item-2"
+            type="single"
+            collapsible
+            className="w-full"
+          >
             <AccordionItem value="item-1">
               <AccordionTrigger>Student Details</AccordionTrigger>
               <AccordionContent>
@@ -272,7 +280,11 @@ function StudentForm({
               <AccordionTrigger>Issue Details</AccordionTrigger>
               <AccordionContent>
                 <div className="grid grid-cols-3 gap-4">
-                  <Input type="hidden" value={id} {...form.register("id")} />
+                  <Input
+                    type="hidden"
+                    value={student.id}
+                    {...form.register("id")}
+                  />
                   <FormField
                     control={form.control}
                     name="dateOfLeaving"
@@ -402,41 +414,3 @@ function StudentForm({
 }
 
 export default StudentForm
-
-const DateInput = ({
-  onChange,
-  onBlur,
-  value,
-  ...field
-}: ControllerRenderProps) => {
-  const [currentValue, setcurrentValue] = useState<string>()
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault()
-    setcurrentValue(e.target.value)
-  }
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    e.preventDefault()
-    const val = e.target.value.replaceAll("/", "-").replaceAll(" ", "-")
-    if (val === "") return onBlur()
-    if (!val) return onBlur()
-    try {
-      const date = parse(val, "dd-MM-yyyy", new Date())
-      setcurrentValue(format(date, "dd-MM-yyyy"))
-      onChange(date)
-    } catch (error) {
-      setcurrentValue("Invalid Date")
-    }
-    onBlur()
-  }
-
-  return (
-    <Input
-      autoComplete="on"
-      placeholder="31-01-2001"
-      onBlur={handleBlur}
-      onChange={handleChange}
-      value={currentValue}
-      {...field}
-    />
-  )
-}

@@ -111,7 +111,7 @@ function TCPage() {
           </div>
           <Separator />
           <div className="mt-3 ">
-            <StudentForm id={selected.id} onSubmit={onSubmit} />
+            <StudentForm student={selected} onSubmit={onSubmit} />
           </div>
         </>
       ) : (
