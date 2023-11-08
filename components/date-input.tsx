@@ -11,7 +11,10 @@ export const DateInput = ({
   value,
   ...field
 }: ControllerRenderProps) => {
-  const [currentValue, setcurrentValue] = useState<string>()
+  console.log(value)
+  const [currentValue, setcurrentValue] = useState<string>(
+    value ? format(new Date(value), "dd-MM-yyyy") : ""
+  )
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     setcurrentValue(e.target.value)
