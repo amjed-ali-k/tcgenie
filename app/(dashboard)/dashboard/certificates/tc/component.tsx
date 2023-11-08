@@ -241,6 +241,7 @@ export const TCFormat = (student: Student) => {
           flexDirection: "column",
           width: "100%",
           padding: 20,
+          fontSize: fontScale * 13,
         }}
       >
         {/* Repeat this block */}
@@ -418,10 +419,18 @@ function Details({ title, value }: { title: string; value?: string | null }) {
         display: "flex",
         flexDirection: "row",
         width: "100%",
+
         justifyContent: "space-between",
       }}
     >
-      <div>{title}</div>
+      <div
+        style={{
+          width: "50%",
+          flex: 1,
+        }}
+      >
+        {title}
+      </div>
       <div
         style={{
           display: "flex",
@@ -431,7 +440,13 @@ function Details({ title, value }: { title: string; value?: string | null }) {
         }}
       >
         <div style={{ marginRight: 20 }}>: </div>
-        <div>{value}</div>
+        <div
+          style={{
+            flex: 1,
+          }}
+        >
+          {value}
+        </div>
       </div>
     </div>
   )

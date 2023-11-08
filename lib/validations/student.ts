@@ -64,5 +64,8 @@ export const tcIssueFormSchema = z.object({
   rollRemovedDate: z.date().default(() => new Date()),
   workingDays: z.string().optional(),
   attendedDays: z.string().optional(),
-  appliedDate: z.date().default(() => new Date()),
+  appliedDate: z
+    .date()
+    .default(() => new Date())
+    .optional(),
 })

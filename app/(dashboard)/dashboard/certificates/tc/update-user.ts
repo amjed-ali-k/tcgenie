@@ -40,11 +40,10 @@ export async function updateStudent(data: FormData) {
   })
 
   // Find the first student with the given admission number and created by the current user
-  const existingStudent = await db.student.findFirst({
+  const existingStudent = await db.student.findUnique({
     where: {
       // The condition to find the student is by the admission number and the creator's ID
-      admissionNo: data.id,
-      createdById: session.user.id,
+      id: data.id,
     },
   })
 
@@ -115,7 +114,7 @@ export async function updateStudent(data: FormData) {
 
   return {
     type: "default",
-    msg: "Student created successfully",
+    msg: "Student updated successfully",
     data: newStudent,
   }
 }

@@ -458,6 +458,22 @@ function StudentForm({
                       </FormItem>
                     )}
                   />
+                  <FormField
+                    control={form.control}
+                    name="appliedDate"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>TC Applied date</FormLabel>
+                        <FormControl>
+                          <DateInput {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          DD-MM-YYYY format, seperated by - or /
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
                 <div className="mt-4 grid grid-cols-3 gap-4">
                   <FormField
