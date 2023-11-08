@@ -1,6 +1,7 @@
 import {
   AlertTriangle,
   ArrowRight,
+  Award,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -47,6 +48,7 @@ export const Icons = {
   billing: CreditCard,
   ellipsis: MoreVertical,
   add: Plus,
+  certificate: Award,
   warning: AlertTriangle,
   user: User,
   arrowRight: ArrowRight,

@@ -1,8 +1,9 @@
+"use client"
+
 import { ChevronDownIcon } from "@radix-ui/react-icons"
-import { Command } from "lucide-react"
-import { Button } from "react-day-picker"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -11,6 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import {
+  Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,

@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
+import { registerUser } from "@/lib/server/register"
 import { cn } from "@/lib/utils"
 import { userNewAuthSchema } from "@/lib/validations/auth"
 import { buttonVariants } from "@/components/ui/button"
@@ -12,8 +13,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
-import { db } from "@/lib/db"
-import { registerUser } from "@/lib/server/register"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -66,12 +65,10 @@ export function UserAuthNewForm({ className, ...props }: UserAuthFormProps) {
               {...register("name")}
             />
             {errors?.name && (
-              <p className="px-1 text-xs text-red-600">
-                {errors.name.message}
-              </p>
+              <p className="px-1 text-xs text-red-600">{errors.name.message}</p>
             )}
           </div>
-             <div className="grid gap-1">
+          <div className="grid gap-1">
             <Label className="sr-only" htmlFor="email">
               Email
             </Label>
@@ -91,7 +88,7 @@ export function UserAuthNewForm({ className, ...props }: UserAuthFormProps) {
               </p>
             )}
           </div>
-             <div className="grid gap-1">
+          <div className="grid gap-1">
             <Label className="sr-only" htmlFor="password">
               Password
             </Label>
@@ -111,7 +108,7 @@ export function UserAuthNewForm({ className, ...props }: UserAuthFormProps) {
               </p>
             )}
           </div>
-             <div className="grid gap-1">
+          <div className="grid gap-1">
             <Label className="sr-only" htmlFor="confirmPassword">
               ConfirmPassword
             </Label>

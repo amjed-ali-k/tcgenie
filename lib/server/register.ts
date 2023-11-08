@@ -1,14 +1,14 @@
-'use server'
+"use server"
 
+import bcrypt from "bcrypt"
 import { z } from "zod"
+
 import { db } from "../db"
 import { userNewAuthSchema } from "../validations/auth"
-import bcrypt from 'bcrypt'
 
 type FormData = z.infer<typeof userNewAuthSchema>
 
 export async function registerUser(data: FormData) {
-
   const validated = userNewAuthSchema.parse(data)
 
   if (!validated) {
@@ -16,7 +16,6 @@ export async function registerUser(data: FormData) {
   }
 
   const { name, email, password } = validated
-
 
   const existingUser = await db.user.findFirst({
     where: {
@@ -38,7 +37,6 @@ export async function registerUser(data: FormData) {
       approvedAt: new Date(),
     },
   })
-  if(user)
-  return true
- return "Unknown error occured"
+  if (user) return true
+  return "Unknown error occured"
 }
