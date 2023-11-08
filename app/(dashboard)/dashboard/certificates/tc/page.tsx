@@ -18,11 +18,11 @@ import { DashboardShell } from "@/components/shell"
 import TCPage from "./component"
 
 export const metadata = {
-  title: "Settings",
-  description: "Manage account and website settings.",
+  title: "Generate TC and CC",
+  description: "Generate certificates.",
 }
 
-export default async function SettingsPage() {
+export default async function TCGenerationPage() {
   const user = await getCurrentUser()
 
   if (!user) {
