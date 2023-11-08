@@ -62,7 +62,7 @@ export const tcIssueFormSchema = z.object({
   hasFeeConcession: z.boolean().default(false),
   lastAttendanceDate: z.date().default(() => new Date()),
   rollRemovedDate: z.date().default(() => new Date()),
-  workingDays: z.number(),
-  attendedDays: z.number(),
+  workingDays: z.string().optional(),
+  attendedDays: z.string().optional(),
   appliedDate: z.date().default(() => new Date()),
 })

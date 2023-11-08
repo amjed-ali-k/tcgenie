@@ -13,10 +13,12 @@ import { z } from "zod"
 import { tcIssueFormSchema } from "@/lib/validations/student"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
+import { toast } from "@/components/ui/use-toast"
 
 import StudentForm from "./details-form"
 import { generatePdf } from "./pdf-generation"
 import SearchUser from "./search-user"
+import { updateStudent } from "./update-user"
 
 function TCPage() {
   const [selected, setselected] = useState<Student>()
@@ -56,6 +58,11 @@ function TCPage() {
     })
     generatePdf(svg, 595.28, 841.89, (url) => {
       window.open(url, "_blank")
+    })
+    const res = await updateStudent(data)
+    toast({
+      variant: res.type as any,
+      title: res.msg,
     })
   }
   return (
