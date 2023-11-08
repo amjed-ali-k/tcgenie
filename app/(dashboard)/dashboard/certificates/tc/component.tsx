@@ -4,6 +4,7 @@
 
 import React, { useState } from "react"
 import { Student } from "@prisma/client"
+import { format } from "date-fns"
 import fmt from "date-fns/format"
 import { MousePointerSquareDashed } from "lucide-react"
 import satori from "satori"
@@ -29,7 +30,7 @@ function TCPage() {
 
     const geistBold = await (await fetch("/fonts/Geist-Bold.otf")).arrayBuffer()
 
-    const svg = await satori(TCFormat(), {
+    const svg = await satori(TCFormat(selected as Student), {
       height: 841.89,
       width: 595.28,
       fonts: [
@@ -125,7 +126,7 @@ function TCPage() {
 
 export default TCPage
 
-export const TCFormat = () => {
+export const TCFormat = (student: Student) => {
   const fontScale = 0.8
   return (
     <div
@@ -210,7 +211,7 @@ export const TCFormat = () => {
             fontWeight: 600,
           }}
         >
-          TC No. 178/22-23
+          {`TC No. ${student.tcIssuedNo}`}
         </div>
         <div
           style={{
@@ -224,7 +225,7 @@ export const TCFormat = () => {
             fontWeight: 600,
           }}
         >
-          Admission No. 11948
+          {`Admission No. ${student.admissionNo}`}
         </div>
       </div>
       <div
@@ -254,7 +255,7 @@ export const TCFormat = () => {
             }}
           >
             <div style={{ marginRight: 20 }}>: </div>
-            <div>AMAL KRISHNAN. P</div>
+            <div>{student.name}</div>
           </div>
         </div>
       </div>
@@ -309,10 +310,16 @@ export const TCFormat = () => {
             fontWeight: 800,
           }}
         >
-          AMAL KRISHNAN
+          {student.name}
         </div>
         <div>was as bonafide student of this institution</div>
-        <div>from 25/07/2019 to 28/06/2022.</div>
+        <div>
+          {`from
+          ${
+            student.dateOfAdmission &&
+            format(student.dateOfAdmission, "dd/MM/yyyy")
+          } to ${format(student.dateOfLeaving || new Date(), "dd/MM/yyyy")}`}
+        </div>
         <div>She/He completed the prescribed course of studies for the</div>
         <div>Diplama Examination in Electronics Engg.</div>
         <div>His/Her Conduct and Character are Good.</div>
@@ -328,7 +335,7 @@ export const TCFormat = () => {
           }}
         >
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div>Date: 12/04/2013</div>
+            <div>{`Date: ${format(new Date(), "dd/MM/yyyy")}`}</div>
             <div>Place: Perinthalmanna</div>
           </div>
 

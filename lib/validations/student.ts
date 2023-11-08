@@ -31,6 +31,27 @@ export const newStudentFormSchema = z.object({
 
 export const tcIssueFormSchema = z.object({
   id: z.string(),
+  admissionNo: z.string().optional(),
+  name: z
+    .string()
+    .min(4, { message: "Name must be atleast 4 characters" })
+    .optional(),
+  parentName: z.string().optional(),
+  parentAddress: z.string().optional(),
+  phoneNo: z
+    .string()
+    .min(10, {
+      message: "Phone number must be atleast 10 characters",
+    })
+    .optional(),
+  caste: z.string().optional(),
+  religion: z.string().optional(),
+  dateOfBirth: z.date().optional(),
+  dateOfAdmission: z.date().optional(),
+  class: z.string().optional(),
+  previousInstitution: z.string().optional(),
+  tcRecievedNo: z.string().optional(),
+  tcRecievedDate: z.date().optional(),
   dateOfLeaving: z.date().optional(),
   classAtTimeOfLeaving: z.string().optional(),
   reasonForLeaving: z.string().optional(),
