@@ -7,8 +7,8 @@ export default function DashboardLoading() {
   return (
     <DashboardShell>
       <DashboardHeader
-        heading="Loading..."
-        text="Please wait until page gets loaded."
+        heading="Certificates"
+        text="Generate and manage certificates."
       >
         {/* <PostCreateButton /> */}
       </DashboardHeader>
