@@ -28,3 +28,14 @@ export const newStudentFormSchema = z.object({
   remarks: z.string().optional(),
   conduct: z.string().optional(),
 })
+
+export const tcIssueFormSchema = z.object({
+  id: z.string(),
+  dateOfLeaving: z.date().optional(),
+  classAtTimeOfLeaving: z.string().optional(),
+  reasonForLeaving: z.string().optional(),
+  tcIssuedNo: z.string().optional(),
+  tcIssuedDate: z.date().optional(),
+  remarks: z.string().optional(),
+  conduct: z.string().optional(),
+})

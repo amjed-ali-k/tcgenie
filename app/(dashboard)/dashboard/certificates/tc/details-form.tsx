@@ -8,7 +8,7 @@ import { Command, Loader } from "lucide-react"
 import { ControllerRenderProps, useForm } from "react-hook-form"
 import * as z from "zod"
 
-import { newStudentFormSchema } from "@/lib/validations/student"
+import { tcIssueFormSchema } from "@/lib/validations/student"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -24,12 +24,14 @@ import { Separator } from "@/components/ui/separator"
 import { toast } from "@/components/ui/use-toast"
 
 function StudentForm({
+  id,
   onSubmit,
 }: {
-  onSubmit: (data: z.infer<typeof newStudentFormSchema>) => void
+  id: string
+  onSubmit: (data: z.infer<typeof tcIssueFormSchema>) => void
 }) {
-  const form = useForm<z.infer<typeof newStudentFormSchema>>({
-    resolver: zodResolver(newStudentFormSchema),
+  const form = useForm<z.infer<typeof tcIssueFormSchema>>({
+    resolver: zodResolver(tcIssueFormSchema),
   })
 
   return (
@@ -37,6 +39,7 @@ function StudentForm({
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <div className="grid grid-cols-3 gap-4">
+            <Input type="hidden" value={id} {...form.register("id")} />
             <FormField
               control={form.control}
               name="dateOfLeaving"
