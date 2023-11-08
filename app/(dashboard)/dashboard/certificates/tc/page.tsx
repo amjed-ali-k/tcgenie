@@ -15,6 +15,8 @@ import {
 import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
 
+import TCPage from "./component"
+
 export const metadata = {
   title: "Settings",
   description: "Manage account and website settings.",
@@ -30,11 +32,13 @@ export default async function SettingsPage() {
   return (
     <DashboardShell>
       <DashboardHeader
-        heading="Certificates"
-        text="Generate and manage certificates."
+        heading="Generate TC and CC"
+        text="Generate certificates."
       />
-      <div className="grid grid-cols-3 gap-10">
-        <Card className=""></Card>
+      <div className="grid gap-10">
+        <Card className="">
+          <TCPage />
+        </Card>
       </div>
     </DashboardShell>
   )

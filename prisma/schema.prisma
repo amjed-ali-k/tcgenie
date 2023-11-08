@@ -1,5 +1,7 @@
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+
 }
 
 datasource db {
@@ -118,6 +120,7 @@ model Student {
   updatedAt            DateTime  @default(now()) @map(name: "updated_at")
   createdBy            User      @relation(fields: [createdById], references: [id])
   createdById          String    @map("created_by")
+  sharedWith          String[]  @map("shared_with")
   // Deleted fields
   deletedAt            DateTime? @map(name: "deleted_at")
   deletedBy            String?   @map(name: "deleted_by")

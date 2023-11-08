@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { redirect } from "next/navigation"
 
 import { authOptions } from "@/lib/auth"
@@ -43,8 +44,9 @@ export default async function SettingsPage() {
           </CardHeader>
           <CardContent></CardContent>
           <CardFooter className="flex justify-end">
-            {/* <Button variant="outline">Cancel</Button> */}
-            <Button>Generate</Button>
+            <Link href="/dashboard/certificates/tc">
+              <Button>Generate</Button>
+            </Link>
           </CardFooter>
         </Card>
         <Card>
