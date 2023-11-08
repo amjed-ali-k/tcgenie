@@ -30,7 +30,7 @@ function TCPage() {
 
     const geistBold = await (await fetch("/fonts/Geist-Bold.otf")).arrayBuffer()
 
-    const svg = await satori(TCFormat(selected as Student), {
+    const svg = await satori(TCFormat(data as Student), {
       height: 841.89,
       width: 595.28,
       fonts: [
@@ -237,27 +237,85 @@ export const TCFormat = (student: Student) => {
         }}
       >
         {/* Repeat this block */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            width: "100%",
-            justifyContent: "space-between",
-          }}
-        >
-          <div>Name of Pupil ( in block letters)</div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              width: "50%",
-              justifyContent: "flex-start",
-            }}
-          >
-            <div style={{ marginRight: 20 }}>: </div>
-            <div>{student.name}</div>
-          </div>
-        </div>
+        <Details
+          title="Name of Pupil ( in block letters )"
+          value={student.name}
+        />
+        <Details
+          title="Name of Guardian and relationship with pupil"
+          value={student.parentName + " Father"}
+        />
+        {(student.caste || student.religion) && (
+          <Details
+            title="Religion, Community and Nationality of the student"
+            value={`${student.religion}, ${student.caste}, Indian`}
+          />
+        )}
+        {student.dateOfBirth && (
+          <Details
+            title="Date of birth according to admission register"
+            value={format(student.dateOfBirth, "dd/MM/yyyy")}
+          />
+        )}
+        <Details
+          title="Class in which the pupil was last enrolled"
+          value={student.class}
+        />
+
+        {student.dateOfAdmission && (
+          <Details
+            title="Date of admission or promotion to that class"
+            value={format(student.dateOfAdmission, "dd/MM/yyyy")}
+          />
+        )}
+        <Details
+          title="Whether qualified for promotion to higher class"
+          value={student.isQualifiedForHigherClass ? "Yes" : "No"}
+        />
+        <Details
+          title="Whether the Pupil has paid all the fees due to the Institution"
+          value={student.allFeesPaid ? "Yes" : "No"}
+        />
+        <Details
+          title="Wheter the Pupil was in receipt of fee concession"
+          value={student.hasFeeConcession ? "Yes" : "No"}
+        />
+        {student.lastAttendanceDate && (
+          <Details
+            title="Date of the Pupil's last attendance at Institution"
+            value={format(student.lastAttendanceDate, "dd/MM/yyyy")}
+          />
+        )}
+        {student.rollRemovedDate && (
+          <Details
+            title="Date on which the name was removed from the rolls"
+            value={format(student.rollRemovedDate, "dd/MM/yyyy")}
+          />
+        )}
+        <Details
+          title="Number of working days upto the date"
+          value={student.workingDays?.toString()}
+        />
+        <Details
+          title="Number of working days the Pupil attended"
+          value={student.attendedDays?.toString()}
+        />
+        {student.appliedDate && (
+          <Details
+            title="Date of application for certificate"
+            value={format(student.appliedDate, "dd/MM/yyyy")}
+          />
+        )}
+        {student.tcIssuedDate && (
+          <Details
+            title="Date of issue of the Certificate"
+            value={format(student.tcIssuedDate, "dd/MM/yyyy")}
+          />
+        )}
+        <Details
+          title="Reason for leaving the Institution"
+          value={student.reasonForLeaving}
+        />
       </div>
       {/* Repeat this block */}
       <div
@@ -322,7 +380,7 @@ export const TCFormat = (student: Student) => {
         </div>
         <div>She/He completed the prescribed course of studies for the</div>
         <div>Diplama Examination in Electronics Engg.</div>
-        <div>His/Her Conduct and Character are Good.</div>
+        <div>{`His/Her Conduct and Character are ${student.conduct}.`}</div>
 
         <div
           style={{
@@ -338,9 +396,35 @@ export const TCFormat = (student: Student) => {
             <div>{`Date: ${format(new Date(), "dd/MM/yyyy")}`}</div>
             <div>Place: Perinthalmanna</div>
           </div>
-
           <div>Signature of the Head of institution with seal</div>
         </div>
+      </div>
+    </div>
+  )
+}
+
+function Details({ title, value }: { title: string; value?: string | null }) {
+  if (!value) return <></>
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        width: "100%",
+        justifyContent: "space-between",
+      }}
+    >
+      <div>{title}</div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          width: "50%",
+          justifyContent: "flex-start",
+        }}
+      >
+        <div style={{ marginRight: 20 }}>: </div>
+        <div>{value}</div>
       </div>
     </div>
   )

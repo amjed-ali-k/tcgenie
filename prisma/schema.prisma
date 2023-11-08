@@ -106,6 +106,15 @@ model Student {
   tcRecievedDate       DateTime? @map("tc_recieved_date")
   tcRecievedNo         String?   @map("tc_recieved_no")
   otherFields          Json?
+  // Additional fields
+  isQualifiedForHigherClass Boolean? @map("is_qualified_for_higher_class")
+  allFeesPaid               Boolean? @map("all_fees_paid")
+  hasFeeConcession          Boolean? @map("has_fee_concession")
+  lastAttendanceDate        DateTime? @map("last_attendance_date")
+  rollRemovedDate           DateTime? @map("roll_removed_date")
+  workingDays               String?      @map("working_days")
+  attendedDays              String?      @map("attended_days")
+  appliedDate               DateTime? @map("applied_date")
   // Issued fields
   conduct              String?
   dateOfLeaving        DateTime? @map("date_of_leaving")

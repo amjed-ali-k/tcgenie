@@ -11,7 +11,6 @@ export const DateInput = ({
   value,
   ...field
 }: ControllerRenderProps) => {
-  console.log(value)
   const [currentValue, setcurrentValue] = useState<string>(
     value ? format(new Date(value), "dd-MM-yyyy") : ""
   )

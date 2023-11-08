@@ -17,6 +17,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 import {
   Form,
   FormControl,
@@ -42,7 +43,7 @@ function StudentForm({
     resolver: zodResolver(tcIssueFormSchema),
     defaultValues: student as any,
   })
-
+  console.log(form.formState.errors)
   return (
     <div className="px-2">
       <Form {...form}>
@@ -56,7 +57,7 @@ function StudentForm({
             <AccordionItem value="item-1">
               <AccordionTrigger>Student Details</AccordionTrigger>
               <AccordionContent>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-4 px-1">
                   <FormField
                     control={form.control}
                     name="admissionNo"
@@ -110,7 +111,7 @@ function StudentForm({
                     )}
                   />
                 </div>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-4 px-1">
                   <FormField
                     control={form.control}
                     name="parentAddress"
@@ -206,7 +207,7 @@ function StudentForm({
                     />
                   </div>
                 </div>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-4 px-1">
                   <FormField
                     control={form.control}
                     name="class"
@@ -273,13 +274,29 @@ function StudentForm({
                       </FormItem>
                     )}
                   />
+                  <FormField
+                    control={form.control}
+                    name="dateOfAdmission"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Date of Admission</FormLabel>
+                        <FormControl>
+                          <DateInput {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          DD-MM-YYYY format, seperated by - or /
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger>Issue Details</AccordionTrigger>
               <AccordionContent>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-4 px-1">
                   <Input
                     type="hidden"
                     value={student.id}
@@ -373,9 +390,142 @@ function StudentForm({
                       </FormItem>
                     )}
                   />
+                  <FormField
+                    control={form.control}
+                    name="workingDays"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Working Days</FormLabel>
+                        <FormControl>
+                          <Input
+                            autoComplete="on"
+                            placeholder="203"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormDescription></FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="attendedDays"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Attended Days</FormLabel>
+                        <FormControl>
+                          <Input
+                            autoComplete="on"
+                            placeholder="203"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormDescription></FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="lastAttendanceDate"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Last attendance date</FormLabel>
+                        <FormControl>
+                          <DateInput {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          DD-MM-YYYY format, seperated by - or /
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="rollRemovedDate"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Roll removed date</FormLabel>
+                        <FormControl>
+                          <DateInput {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          DD-MM-YYYY format, seperated by - or /
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
-                <Separator />
-                <div className="grid grid-cols-3 gap-4">
+                <div className="mt-4 grid grid-cols-3 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="allFeesPaid"
+                    render={({ field }) => (
+                      <FormItem className="flex h-fit flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                          />
+                        </FormControl>
+                        <div className="space-y-1 leading-none">
+                          <FormLabel>All fees are paid</FormLabel>
+                          <FormDescription>
+                            You only have to enter this information when
+                            generating certificate.
+                          </FormDescription>
+                        </div>
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="isQualifiedForHigherClass"
+                    render={({ field }) => (
+                      <FormItem className="flex h-fit flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                          />
+                        </FormControl>
+                        <div className="space-y-1 leading-none">
+                          <FormLabel>Is qualified for higher class</FormLabel>
+                          <FormDescription>
+                            You only have to enter this information when
+                            generating certificate.
+                          </FormDescription>
+                        </div>
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="hasFeeConcession"
+                    render={({ field }) => (
+                      <FormItem className="flex h-fit flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                          />
+                        </FormControl>
+                        <div className="space-y-1 leading-none">
+                          <FormLabel>Has fee concession</FormLabel>
+                          <FormDescription>
+                            You only have to enter this information when
+                            generating certificate.
+                          </FormDescription>
+                        </div>
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <Separator className="my-4" />
+                <div className="grid grid-cols-3 gap-4 px-1">
                   <FormField
                     control={form.control}
                     name="conduct"

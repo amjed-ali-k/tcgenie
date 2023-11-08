@@ -2,10 +2,8 @@
 
 import React, { useRef, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import format from "date-fns/format"
-import parse from "date-fns/parse"
 import { Command, Loader } from "lucide-react"
-import { ControllerRenderProps, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import * as z from "zod"
 
 import { newStudentFormSchema } from "@/lib/validations/student"
@@ -279,6 +277,22 @@ function StudentForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>TC recieved date</FormLabel>
+                  <FormControl>
+                    <DateInput {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    DD-MM-YYYY format, seperated by - or /
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="dateOfAdmission"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Date of Admission</FormLabel>
                   <FormControl>
                     <DateInput {...field} />
                   </FormControl>
