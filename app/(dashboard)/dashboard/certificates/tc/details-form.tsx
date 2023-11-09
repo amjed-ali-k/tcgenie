@@ -43,6 +43,7 @@ function StudentForm({
     resolver: zodResolver(tcIssueFormSchema),
     defaultValues: student as any,
   })
+
   console.log(form.formState.errors)
   return (
     <div className="px-2">
