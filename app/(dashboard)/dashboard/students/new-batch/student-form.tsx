@@ -53,7 +53,7 @@ function StudentForm() {
 
   const [isSubmitting, setisSubmitting] = useState(false)
   const firstInput = useRef<HTMLInputElement>()
-  async function onSubmit(values: z.infer<typeof newStudentFormSchema>, e) {
+  async function onSubmit(values: z.infer<typeof newStudentFormSchema>) {
     setisSubmitting(true)
 
     const res = await addStudent(values)
