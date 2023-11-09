@@ -29,7 +29,6 @@ function TCPage() {
     const geistMedium = await (
       await fetch("/fonts/Geist-Medium.otf")
     ).arrayBuffer()
-
     const geistBold = await (await fetch("/fonts/Geist-Bold.otf")).arrayBuffer()
 
     const svg = await satori(TCFormat(data as Student), {
@@ -56,6 +55,7 @@ function TCPage() {
         },
       ],
     })
+
     generatePdf(svg, 595.28, 841.89, (url) => {
       window.open(url, "_blank")
     })
@@ -65,6 +65,7 @@ function TCPage() {
       title: res.msg,
     })
   }
+  console.log(selected)
   return (
     <div className="p-5">
       <SearchUser value={selected} setValue={setselected} />
@@ -105,7 +106,7 @@ function TCPage() {
                   <div className="my-3">
                     {selected?.dateOfAdmission && (
                       <p className="text-sm font-medium leading-none">
-                        {fmt(selected?.dateOfAdmission, "dd/MM/yyyy")}
+                        {fmt(new Date(selected?.dateOfAdmission), "dd/MM/yyyy")}
                       </p>
                     )}
                     <p className="text-xs text-muted-foreground">

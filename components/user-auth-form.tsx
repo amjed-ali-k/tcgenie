@@ -52,14 +52,12 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       })
     }
 
-
     toast({
       title: "Login successful!",
       // description: "We sent you a login link. Be sure to check your spam too.",
     })
 
     router.push(signInResult.url ?? "/dashboard")
-
   }
 
   return (
@@ -85,7 +83,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 {errors.email.message}
               </p>
             )}
-          </div>  <div className="grid gap-1">
+          </div>
+          f
+          <div className="grid gap-1">
             <Label className="sr-only" htmlFor="password">
               Password
             </Label>
